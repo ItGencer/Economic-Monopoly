@@ -7,18 +7,77 @@
 }
 
 .cell {
+    padding: 15px;
     border: 1px solid #000;
-    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
 }
 
 .cell h1{
-    position: absolute;
-    top: 10px;
-    left: 50%;
-    transform: translateX(-50%);
     text-transform: uppercase;
-    font-size: 25px;
+    font-size: 20px;
+    margin-bottom: 10px;
 }
+
+
+/* UP */
+.cell[data-type-cars="imege"]{
+    background: linear-gradient(0deg,rgba(240, 194, 247, 1) 0%, rgba(209, 5, 234, 1) 100%);
+}
+
+.cell[data-type-cars="tax"]{
+    background: linear-gradient(0deg,rgba(165, 167, 6, 1) 0%, rgba(240, 242, 93, 1) 100%);
+}
+
+.cell[data-type-cars="negative-reputation"]{
+    background: linear-gradient(45deg,rgba(255, 255, 255, 1) 0%, rgba(0, 0, 0, 1) 100%);
+}
+
+.cell[data-type-cars="negative-reputation"] h1{
+    color: white;
+}
+
+.cell[data-type-cars="ads"]{
+    background: linear-gradient(140deg,rgba(203, 247, 202, 1) 0%, rgba(100, 211, 19, 1) 100%);
+}
+
+.cell[data-type-cars="casino"]{
+    background: linear-gradient(0deg,rgba(149, 219, 252, 1) 0%, rgba(249, 143, 157, 1) 100%);
+}
+
+.cell[data-type-cars="salary"]{
+    background: linear-gradient(12deg,rgba(147, 221, 255, 1) 0%, rgba(54, 75, 251, 1) 100%);
+}
+
+.cell[ data-type-cars="vacation"]{
+    background: linear-gradient(0deg,rgba(237, 227, 200, 1) 0%, rgba(248, 242, 220, 1) 11%, rgba(78, 205, 215, 1) 17%, rgba(86, 171, 230, 1) 24%, rgba(183, 231, 254, 1) 33%, rgba(0, 133, 212, 1) 58%, rgba(5, 71, 111, 1) 100%);
+}
+
+.cell[ data-type-cars="client"]{
+    background: linear-gradient(0deg,rgba(174, 79, 175, 1) 0%, rgba(253, 76, 243, 1) 100%);
+}
+
+.cell[data-type-cars="director"]{
+    background: linear-gradient(0deg,rgba(146, 218, 255, 1) 0%, rgba(72, 22, 239, 1) 100%);
+}
+
+.cell[ data-type-cars="positive-reputation"]{
+    background: linear-gradient(142deg,rgba(207, 215, 68, 1) 0%, rgba(166, 200, 96, 1) 25%, rgba(117, 182, 131, 1) 50%, rgba(68, 162, 166, 1) 75%, rgba(3, 138, 212, 1) 100%);
+}
+
+/* UP end*/
+
+/* Factory & Tender */
+.cell[ data-type-cars="factory"]{
+    background: linear-gradient(142deg,rgba(255, 118, 118, 1) 0%, rgba(255, 132, 143, 1) 25%, rgba(255, 158, 172, 1) 50%, rgba(255, 198, 208, 1) 75%, rgba(255, 219, 227, 1) 100%);
+}
+
+.cell[ data-type-cars="tender"]{
+    background: linear-gradient(0deg,rgba(202, 225, 224, 1) 0%, rgba(213, 225, 182, 1) 57%, rgba(242, 205, 84, 1) 78%, rgba(251, 198, 55, 1) 100%);
+}
+/* Factory & Tender end */
 
 .center {
   grid-column: 2 / 13;
