@@ -1,0 +1,32 @@
+.field {
+  display: grid;
+  grid-template-columns: repeat(13, 1fr);
+  grid-template-rows: repeat(9, 1fr);
+  width: 100%;
+  aspect-ratio: 13 / 9;
+}
+
+.cell {
+    border: 1px solid #000;
+    position: relative;
+}
+
+.cell h1{
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    text-transform: uppercase;
+    font-size: 25px;
+}
+
+.center {
+  grid-column: 2 / 13;
+  grid-row: 2 / 9;
+  background: #2e4cea;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32px;
+}
