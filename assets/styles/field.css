@@ -1,24 +1,25 @@
 .field {
-  display: grid;
-  grid-template-columns: repeat(13, 1fr);
-  grid-template-rows: repeat(9, 1fr);
-  width: 100%;
-  aspect-ratio: 13 / 9;
+    display: grid;
+    grid-template-columns: minmax(70px, 8vw) repeat(11, 1fr) minmax(70px, 8vw);
+    grid-template-rows: minmax(140px, 8vw) repeat(7, 1fr) minmax(140px, 8vw);
+    width: 100vw; 
+    height: 100vh;
 }
 
 .cell {
-    padding: 15px;
-    border: 1px solid #000;
+    padding: 8%;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-evenly;
 }
 
 .cell h1{
     text-transform: uppercase;
-    font-size: 20px;
-    margin-bottom: 10px;
+    font-size: clamp(7px, 1vw, 14px);
+    margin: 0;
+    text-align: center;
+    line-height: 1.1;
 }
 
 
@@ -59,6 +60,10 @@
     background: linear-gradient(0deg,rgba(174, 79, 175, 1) 0%, rgba(253, 76, 243, 1) 100%);
 }
 
+.cell[ data-type-cars="random"]{
+    background: linear-gradient(0deg,rgba(154, 245, 163, 1) 0%, rgba(0, 158, 21, 1) 100%);
+}
+
 .cell[data-type-cars="director"]{
     background: linear-gradient(0deg,rgba(146, 218, 255, 1) 0%, rgba(72, 22, 239, 1) 100%);
 }
@@ -80,12 +85,103 @@
 /* Factory & Tender end */
 
 .center {
-  grid-column: 2 / 13;
-  grid-row: 2 / 9;
+  grid-column: 2 / -2;
+  grid-row: 2 / -2;
+
   background: #2e4cea;
+  border: 10px solid black;
   color: white;
+
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 32px;
+}
+
+.field-center {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: repeat(5, 1fr);
+  width: 100%;
+  height: 100%;
+}
+
+/* Налаштування центру */
+.center-new {
+  grid-column: 2 / 6;
+  grid-row: 2 / 5;
+  background: url('../materials/field_center.jpg') no-repeat center/cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 3rem;
+}
+
+/* Базовий стиль клітинки для scannability */
+.field-center__cell {
+  border: 1px solid black;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  padding: 5%;
+  text-align: center;
+}
+
+.start{
+    background-color: #ff628f;
+    font-size: 50px;
+    font-weight: 600;
+}
+
+.field-center__cell h1{
+    font-size: clamp(10px, 1.5vw, 24px);
+    text-transform: uppercase;
+}
+
+.field-center__cell[ data-type-cars="deal"]{
+    background: linear-gradient(0deg,rgba(253, 48, 125, 1) 0%, rgba(255, 151, 152, 1) 100%);
+}
+
+.field-center__cell[ data-type-cars="deal"] img{
+    max-width: 150px;
+}
+
+.field-center__cell[ data-type-cars="imege"]{
+    background: linear-gradient(352deg,rgba(238, 184, 246, 1) 0%, rgba(211, 13, 233, 1) 100%);
+    flex-direction: row;
+}
+
+.field-center__cell[ data-type-cars="сaseno"]{
+    background: linear-gradient(11deg,rgba(155, 216, 247, 1) 0%, rgba(245, 147, 160, 1) 100%);
+    flex-direction: row;
+}
+
+.field-center__cell[ data-type-cars="vacation"]{
+    background: linear-gradient(0deg,rgba(237, 227, 200, 1) 0%, rgba(248, 242, 220, 1) 11%, rgba(78, 205, 215, 1) 17%, rgba(86, 171, 230, 1) 24%, rgba(183, 231, 254, 1) 33%, rgba(0, 133, 212, 1) 58%, rgba(5, 71, 111, 1) 100%);
+}
+
+.field-center__cell[ data-type-cars="vacation"] img{
+    max-width: 120px;
+}
+
+.field-center__cell[ data-type-cars="random"]{
+    background: linear-gradient(0deg,rgba(154, 245, 163, 1) 0%, rgba(0, 158, 21, 1) 100%);
+    flex-direction: row;
+}
+
+.field-center__cell[ data-type-cars="random"] img{
+    max-width: 120px;
+}
+
+.field-center__cell[ data-type-cars="salary"]{
+    background: linear-gradient(0deg,rgba(134, 199, 255, 1) 0%, rgba(80, 116, 252, 1) 100%);
+}
+
+.field-center__cell[ data-type-cars="salary"] img{
+    max-width: 140px;
+}
+
+.field-center__cell[ data-type-cars="diZLike"]{
+    background: linear-gradient(347deg,rgba(255, 255, 255, 1) 0%, rgba(0, 0, 0, 1) 100%);
 }
