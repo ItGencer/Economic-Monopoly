@@ -47,23 +47,18 @@ const cellTypes = {
     folder: "Companies",
     image: "TV_factory.png"
   },
-  imege1x1: {
-    title: "Imege",
+  image: {
+    title: "Image",
     folder: "Outer circle",
-    image: "Imege 1х1.png"
-  },
-  imege1x15: {
-    title: "Imege",
-    folder: "Inner circle",
-    image: "Imege 1х1,5.png"
+    image: "Image 1х1.png"
   },
   negativeReputation1x1: {
-    title: "Reputation",
+    title: "Negative Reputation",
     folder: "Outer circle",
     image: "DiZLike 1х1.png"
   },
   negativeReputation1x15: {
-    title: "Reputation",
+    title: "Negative Reputation",
     folder: "Inner circle",
     image: "DiZLike 1х1,5.png"
   },
@@ -144,12 +139,12 @@ const cellTypes = {
 };
 
 const outerRing = [
-  "imege1x1",
+  "image",
   "tax",
   "negativeReputation1x1",
   "ads",
   "casino1x1",
-  "imege1x1",
+  "image",
   "salary1x1",
   "tax",
   "vacation",
@@ -159,7 +154,7 @@ const outerRing = [
   "factoryTV",
 
   "director",
-  "imege1x1",
+  "image",
   "tenderGermany",
   "casino1x1",
   "random",
@@ -177,7 +172,7 @@ const outerRing = [
   "travelAgency",
   "negativeReputation1x1",
   "tenderFrance",
-  "imege1x1",
+  "image",
   "client",
   "cleaning",
   "random",
@@ -191,7 +186,7 @@ const outerRing = [
 const innerRing = [
   "start",
   "deal",
-  "imege1x15",
+  "image",
   "casino1x15",
   "deal",
   "deal",
@@ -200,50 +195,87 @@ const innerRing = [
   "casino1x15",
   "vacation",
   "deal",
-  "imege1x15",
+  "image",
   "salary1x15",
   "random",
   "deal",
-  "imege1x15",
+  "image",
   "vacation",
   "negativeReputation1x15"
 ];
+  
+function toCamelCase(str) {
+  return str
+    .toLowerCase()
+    .split(" ")
+    .map((w, i) => i === 0 ? w : w[0].toUpperCase() + w.slice(1))
+    .join("");
+}
+
+function getCellClass({ folder, title }, typeKey) {
+  if (typeKey === "casino1x1" || typeKey === "casino1x15") {
+    return "field__cell field__cell__casino";
+  }
+
+  const folderMap = {
+    Tender: "tender",
+    Companies: "factory"
+  };
+
+  const suffix = folderMap[folder] ?? toCamelCase(title ?? typeKey);
+  return `field__cell field__cell__${suffix}`;
+}
 
 function renderCells(container, layout, typeMap) {
+  const fragment = document.createDocumentFragment();
+
   layout.forEach(typeKey => {
     const data = typeMap[typeKey];
     if (!data) return;
 
     const cell = document.createElement("div");
-    cell.className = `field__cell field__cell__${typeKey}`;
+    cell.className = getCellClass(data, typeKey);
     cell.dataset.type = typeKey;
 
-    const h1 = document.createElement("h1");
-    h1.textContent = data.title;
-    h1.className = `field__cell field__cell__${typeKey}__title`;
-    cell.append(h1);
+    addCell({
+      ...data,
+      typeKey,
+      block: cell
+    });
 
-    if (data.image !== undefined)
-      {
-      const img = document.createElement("img");
-      img.src = `assets/materials/${data.folder}/${data.image}`;
-      img.alt = data.title!==undefined ? data.title : typeKey;
-      img.className = `field__cell field__cell__${typeKey}__img`;
-      cell.append(img);
-    }
-
-    container.appendChild(cell);
+    fragment.appendChild(cell);
   });
+
+  container.appendChild(fragment);
 }
 
-renderCells(
-  document.querySelector(".field"),
-  outerRing,
-  cellTypes
-);
+function addCell({ title, image, folder, typeKey, block }) {
+  if (title) {
+    const h1 = document.createElement("h1");
+    h1.textContent = title;
+    h1.id = title === "Start" ? "start" : "";
+    h1.className = title === "Start" ? "" : "field__cell__title";
+    block.appendChild(h1);
+  }
 
-renderCells(
-  document.querySelector(".field-center"),
-  innerRing,
-  cellTypes
-);
+  if (image && folder) {
+    const img = document.createElement("img");
+    img.src = `assets/materials/${folder}/${image}`;
+    img.alt = title || typeKey;
+    img.className = "field__cell__img";
+    block.appendChild(img);
+  }
+}
+
+ renderCells(
+    document.querySelector(".field"),
+    outerRing,
+    cellTypes
+  );
+
+  renderCells(
+    document.querySelector(".field-center"),
+    innerRing,
+    cellTypes
+  );
+

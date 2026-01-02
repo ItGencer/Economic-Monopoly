@@ -1,0 +1,84 @@
+p{
+    font-size: 18px;
+    font-weight: 500;
+}
+span {
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.player-panel{
+    position: fixed;
+    top: 10%;
+    left: 10px;
+    width: 90%;
+    height: 80%;
+    background-color: #f9eee3;
+    border-radius: 20px;
+    padding: 30px;
+}
+
+.player-panel__title{
+    font-size: 35px;
+    text-align: center;
+}
+
+
+.player-panel__info{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.player-panel__info__name{
+    font-size: 20px;
+    font-weight: 600;
+}
+
+table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+    padding: 8px;
+}
+
+caption {
+    font-size: 35px;
+    text-align: center;
+    font-weight: 800;
+    margin-bottom: 15px;
+}
+
+th{
+    font-size: 25px;
+    font-weight: 700;
+    text-align: left;
+}
+
+td{
+    font-size: 20px;
+    font-weight: 500;
+}
+
+td:first-child {
+    font-weight: 600;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+table th:first-child,
+table td:first-child {
+    width: 20%;
+}
+
+table th:nth-child(2),
+table td:nth-child(2) {
+    width: 80%;
+}
+
+.player-panel__info__debts{
+    font-size: 16px;
+    font-weight: 500;
+}
