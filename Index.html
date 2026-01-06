@@ -8,7 +8,7 @@
 </head>
 <body>
     <header>
-        <img src="assets/materials/menu-open.png" alt="menu"/>
+        <img src="assets/materials/menu-open.png" alt="menu" class="menu-button"/>
     </header>
     <main>
         <div class="field">
@@ -25,20 +25,12 @@
             </h1>
             <div class="player-panel__info">
                 <h3 class="player-panel__info__name">
-                    Player name: Player 1
+                    Player name: 
                 </h3>
-                <p>
-                    <span>Client:</span> № 0
-                </p>
-                <p>
-                    <span>Image:</span> 0
-                </p>
-                <p>
-                    <span>Commodity stock:</span> 0
-                </p>
-                <p>
-                    <span>Money:</span> $1500
-                </p>
+                <p class="player-panel__info__item" data-title="Client №: " data-value="0"></p>
+                <p class="player-panel__info__item" data-title="Image: " data-value="0"></p>
+                <p class="player-panel__info__item" data-title="Commodity stock: " data-value="0"></p>
+                <p class="player-panel__info__item" data-title="Money: $ " data-value="0"></p>
 
                 <table>
                     <caption>
@@ -51,38 +43,13 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>Aerofactory</td>
-                            <td>0</td>
-                        </tr>
-                        <tr>
-                            <td>Building</td>
-                            <td>0</td>
-                        </tr>
-                        <tr>
-                            <td>Clining</td>
-                            <td>0</td>
-                        </tr>
-                        <tr>
-                            <td>Radio Studio</td>
-                            <td>0</td>
-                        </tr>
-                        <tr>
-                            <td>Travel Agency</td>
-                            <td>0</td>
-                        </tr>
-                        <tr>
-                            <td>TV factory</td>
-                            <td>0</td>
-                        </tr>
                     </tbody>
                 </table>
 
-                <p>
-                    <span>Debts:</span> $0
-                </p>
+                <p class="player-panel__info__item" data-title="Debts: $ " data-value="0"></p>
         </div>
     </main>
-    <script src="assets/scripts/field.js"></script>
+    
+    <script type="module" src="assets/scripts/script.js"></script>
 </body>
 </html>

@@ -267,7 +267,8 @@ function addCell({ title, image, folder, typeKey, block }) {
   }
 }
 
- renderCells(
+export function initField() {
+  renderCells(
     document.querySelector(".field"),
     outerRing,
     cellTypes
@@ -278,4 +279,4 @@ function addCell({ title, image, folder, typeKey, block }) {
     innerRing,
     cellTypes
   );
-
+}
