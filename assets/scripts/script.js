@@ -1,10 +1,13 @@
 import { initField } from "./field.js";
 import { initPlayerPanel } from "./player-panel.js";
+import { initPlayers } from "./player.js";
+import { initDice } from "./dice.js";
 
-document.addEventListener("DOMContentLoaded", () => {
-  initField();
-  initPlayerPanel();
-});
+await initField();
+initPlayerPanel();
+initPlayers();
+initDice();
+// initTurns();
 
 // Toggle Player Panel
 
