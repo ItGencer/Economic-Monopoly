@@ -1,209 +1,16 @@
-const cellTypes = {
-  ads: {
-    title: "ADS",
-    folder: "Outer circle",
-    image: "ADS.png"
-  },
-  casino1x1: {
-    folder: "Outer circle",
-    image: "Casino 1х1.png"
-  },
-  casino1x15: {
-    folder: "Inner circle",
-    image: "Casino 1х1,5.png"
-  },
-  client: {
-    title: "Client",
-    folder: "Outer circle",
-    image: "Client.png"
-  },
-  cleaning: {
-    title: "Clining",
-    folder: "Companies",
-    image: "Clining.png"
-  },
-  deal: {
-    title: "Deal",
-    folder: "Inner circle",
-    image: "Deal 1х1,5.png"
-  },
-  director: {
-    title: "Director",
-    folder: "Outer circle",
-    image: "Director.png"
-  },
-  factoryAero: {
-    title: "Aerofactory",
-    folder: "Companies",
-    image: "Aerofactory.png"
-  },
-  factoryBuilding: {
-    title: "Building",
-    folder: "Companies",
-    image: "Building.png"
-  },
-  factoryTV: {
-    title: "TV Factory",
-    folder: "Companies",
-    image: "TV_factory.png"
-  },
-  image: {
-    title: "Image",
-    folder: "Outer circle",
-    image: "Image 1х1.png"
-  },
-  negativeReputation1x1: {
-    title: "Negative Reputation",
-    folder: "Outer circle",
-    image: "DiZLike 1х1.png"
-  },
-  negativeReputation1x15: {
-    title: "Negative Reputation",
-    folder: "Inner circle",
-    image: "DiZLike 1х1,5.png"
-  },
-  positiveReputation: {
-    title: "Reputation",
-    folder: "Outer circle",
-    image: "Like.png"
-  },
-  radioStudio: {
-    title: "Radio Studio",
-    folder: "Companies",
-    image: "Radio_Studio.png"
-  },
-  random: {
-    title: "Random",
-    folder: "Outer circle",
-    image: "Random 1x1.png"
-  },
-  salary1x1: {
-    title: "Salary",
-    folder: "Outer circle",
-    image: "Salary 1х1.png"
-  },
-  salary1x15: {
-    title: "Salary",
-    folder: "Inner circle",
-    image: "Salary 1х1,5.png"
-  },
-  start: {
-    title: "Start"
-  },
-  tax: {
-    title: "Tax",
-    folder: "Outer circle",
-    image: "Tax.png"
-  },
-  tenderBrazil: {
-    title: "Brazil",
-    folder: "Tender",
-    image: "Brazil.jpg"
-  },
-  tenderFrance: {
-    title: "France",
-    folder: "Tender",
-    image: "France.jpg"
-  },
-  tenderGermany: {
-    title: "Germany",
-    folder: "Tender",
-    image: "Germany.jpg"
-  },
-  tenderItaly: {
-    title: "Italy",
-    folder: "Tender",
-    image: "Italy.jpg"
-  },
-  tenderMexico: {
-    title: "Mexico",
-    folder: "Tender",
-    image: "Mexico.jpg"
-  },
-  tenderUkraine: {
-    title: "Ukraine",
-    folder: "Tender",
-    image: "Ukraine.jpg"
-  },
-  travelAgency: {
-    title: "Travel Agency",
-    folder: "Companies",
-    image: "Travel_Agency.jpg"
-  },
-  vacation: {
-    title: "Vacation",
-    folder: "Outer circle",
-    image: "Vacation 1х1.png"
-  }
-  
-};
+let cellTypes;
+let outerRing;
+let innerRing;
 
-const outerRing = [
-  "image",
-  "tax",
-  "negativeReputation1x1",
-  "ads",
-  "casino1x1",
-  "image",
-  "salary1x1",
-  "tax",
-  "vacation",
-  "client",
-  "random",
-  "director",
-  "factoryTV",
+async function loadFieldData() {
+  const res = await fetch("field-data.json");
+  const data = await res.json();
 
-  "director",
-  "image",
-  "tenderGermany",
-  "casino1x1",
-  "random",
-  "tenderUkraine",
-  "factoryAero",
-  "factoryBuilding",
-  "salary1x1",
-  "random",
-  "tenderMexico",
-  "ads",
-  "client",
-  "tenderItaly",
+  cellTypes = data.cellTypes;
+  outerRing = data.outerRing;
+  innerRing = data.innerRing;
+}
 
-  "positiveReputation",
-  "travelAgency",
-  "negativeReputation1x1",
-  "tenderFrance",
-  "image",
-  "client",
-  "cleaning",
-  "random",
-  "tenderBrazil",
-  "salary1x1",
-  "radioStudio",
-  "tax",
-  "client"
-];
-
-const innerRing = [
-  "start",
-  "deal",
-  "image",
-  "casino1x15",
-  "deal",
-  "deal",
-  "deal",
-  "random",
-  "casino1x15",
-  "vacation",
-  "deal",
-  "image",
-  "salary1x15",
-  "random",
-  "deal",
-  "image",
-  "vacation",
-  "negativeReputation1x15"
-];
-  
 function toCamelCase(str) {
   return str
     .toLowerCase()
@@ -267,7 +74,8 @@ function addCell({ title, image, folder, typeKey, block }) {
   }
 }
 
-export function initField() {
+export async function initField() {
+  await loadFieldData();
   renderCells(
     document.querySelector(".field"),
     outerRing,
