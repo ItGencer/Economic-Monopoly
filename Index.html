@@ -8,37 +8,70 @@
 </head>
 <body>
     <header>
-        <img src="assets/materials/menu-open.png" alt="menu"/>
+        <img src="assets/materials/menu-open.png" alt="menu" class="menu-button"/>
     </header>
     <main>
         <div class="field">
             <div class="center">
                 <div class="field-center">
-                    <div class="center-new"></div>
+                    <div class="center-new">
+                        <div class="dice-container">
+                            <div class="dice">
+                                <ol class="die-list even-roll" data-roll="1" id="die-1">
+                                <li class="die-item" data-side="1">
+                                    <span class="dot"></span>
+                                </li>
+                                <li class="die-item" data-side="2">
+                                    <span class="dot"></span>
+                                    <span class="dot"></span>
+                                </li>
+                                <li class="die-item" data-side="3">
+                                    <span class="dot"></span>
+                                    <span class="dot"></span>
+                                    <span class="dot"></span>
+                                </li>
+                                <li class="die-item" data-side="4">
+                                    <span class="dot"></span>
+                                    <span class="dot"></span>
+                                    <span class="dot"></span>
+                                    <span class="dot"></span>
+                                </li>
+                                <li class="die-item" data-side="5">
+                                    <span class="dot"></span>
+                                    <span class="dot"></span>
+                                    <span class="dot"></span>
+                                    <span class="dot"></span>
+                                    <span class="dot"></span>
+                                </li>
+                                <li class="die-item" data-side="6">
+                                    <span class="dot"></span>
+                                    <span class="dot"></span>
+                                    <span class="dot"></span>
+                                    <span class="dot"></span>
+                                    <span class="dot"></span>
+                                    <span class="dot"></span>
+                                </li>
+                                </ol>
+                            </div>
+                            <button type="button" id="roll-button">Roll Dice</button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-
         <div class="player-panel">
+            
             <h1 class="player-panel__title">
                 Manager card
             </h1>
             <div class="player-panel__info">
                 <h3 class="player-panel__info__name">
-                    Player name: Player 1
+                    Player name: 
                 </h3>
-                <p>
-                    <span>Client:</span> № 0
-                </p>
-                <p>
-                    <span>Image:</span> 0
-                </p>
-                <p>
-                    <span>Commodity stock:</span> 0
-                </p>
-                <p>
-                    <span>Money:</span> $1500
-                </p>
+                <p class="player-panel__info__item" data-title="Client №: " data-value="0"></p>
+                <p class="player-panel__info__item" data-title="Image: " data-value="0"></p>
+                <p class="player-panel__info__item" data-title="Commodity stock: " data-value="0"></p>
+                <p class="player-panel__info__item" data-title="Money: $ " data-value="0"></p>
 
                 <table>
                     <caption>
@@ -51,38 +84,13 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>Aerofactory</td>
-                            <td>0</td>
-                        </tr>
-                        <tr>
-                            <td>Building</td>
-                            <td>0</td>
-                        </tr>
-                        <tr>
-                            <td>Clining</td>
-                            <td>0</td>
-                        </tr>
-                        <tr>
-                            <td>Radio Studio</td>
-                            <td>0</td>
-                        </tr>
-                        <tr>
-                            <td>Travel Agency</td>
-                            <td>0</td>
-                        </tr>
-                        <tr>
-                            <td>TV factory</td>
-                            <td>0</td>
-                        </tr>
                     </tbody>
                 </table>
 
-                <p>
-                    <span>Debts:</span> $0
-                </p>
+                <p class="player-panel__info__item" data-title="Debts: $ " data-value="0"></p>
+            </div>
         </div>
     </main>
-    <script src="assets/scripts/field.js"></script>
+    <script type="module" src="assets/scripts/script.js"></script>
 </body>
 </html>
