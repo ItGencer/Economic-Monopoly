@@ -7,7 +7,6 @@ await initField();
 initPlayerPanel();
 initPlayers();
 initDice();
-// initTurns();
 
 // Toggle Player Panel
 

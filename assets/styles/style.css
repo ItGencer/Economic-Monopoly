@@ -1,11 +1,16 @@
 @import "./field.css";
 @import "./player-panel.css";
+@import "./dice.css";
 
 *{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-size: 0;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html{
+  scroll-behavior: smooth;
+  font-size: 16px; 
 }
 
 html, body {
@@ -57,46 +62,4 @@ img{
   height: 25px;
   border-radius: 50%;
   border: 1px solid #000;
-}
-
-.dice {
-  position: absolute;
-  margin-top: 16px;
-  text-align: center;
-}
-
-.dice__element {
-  width: 60px;
-  height: 60px;
-  margin: 0 auto 10px;
-  border-radius: 12px;
-  background: #fff;
-  color: #000;
-  font-size: 32px;
-  font-weight: bold;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 6px 15px rgba(0,0,0,0.4);
-  user-select: none;
-}
-
-#dice__button {
-  padding: 8px 16px;
-  border: none;
-  border-radius: 8px;
-  background-color: #28a745;
-  color: #fff;
-  font-size: 16px;
-  cursor: pointer;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-  transition: background-color 0.3s ease;
-}
-
-@keyframes roll {
-  0%   { transform: rotate(0deg) scale(1); }
-  25%  { transform: rotate(90deg) scale(1.1); }
-  50%  { transform: rotate(180deg) scale(0.9); }
-  75%  { transform: rotate(270deg) scale(1.1); }
-  100% { transform: rotate(360deg) scale(1); }
 }
