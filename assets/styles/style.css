@@ -55,6 +55,7 @@ img{
   gap: 4px;
   flex-wrap: wrap;
   margin-top: 4px;
+  z-index: 1;
 }
 
 .player-token {

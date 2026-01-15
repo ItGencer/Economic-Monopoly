@@ -1,32 +1,55 @@
-// ================================
-// PLAYER CONFIG
-// ================================
+class Player {
+  constructor({
+    id,
+    name,
+    color,
+    money = 10000,
+    position = "start",
 
-const MIN_PLAYERS = 2;
+    shares = [
+      { companyId: 1, percentage: 0 },
+      { companyId: 2, percentage: 0 },
+      { companyId: 3, percentage: 0 },
+      { companyId: 4, percentage: 0 },
+      { companyId: 5, percentage: 0 },
+      { companyId: 6, percentage: 0 }
+    ],
+  }) {
+    this.id = id;
+    this.name = name;
+    this.color = color;
+    this.money = money;
+    this.position = position;
+    this.shares = shares;
+  }
+
+  addMoney(amount) {
+    this.money += amount;
+  }
+
+  removeMoney(amount) {
+    this.money = Math.max(0, this.money - amount);
+  }
+
+  setPosition(position) {
+    this.position = position;
+  }
+
+  updateShares(companyId, percentage) {
+    const share = this.shares.find(item => item.companyId === companyId);
+    if (share) {
+      share.percentage = percentage;
+    } else {
+      this.shares.push({ companyId, percentage });
+    }
+  }
+}
+
+const MIN_PLAYERS = 1;
 const MAX_PLAYERS = 6;
 
-// 🔹 Дані гравців
-export const players = [
-  {
-    id: 0,
-    name: "Player 1",
-    color: "#e74c3c",
-    money: 3000,
-    position: "start"
-  },
-  {
-    id: 1,
-    name: "Player 2",
-    color: "#3498db",
-    money: 3000,
-    position: "start"
-  }
-  // ➕ можна додати до 6
-];
-
-// ================================
-// VALIDATION
-// ================================
+let players = [
+  new Player({ id: 1, name: "Alice", color: "#ff0000"})];
 
 function validatePlayers() {
   if (players.length < MIN_PLAYERS || players.length > MAX_PLAYERS) {
@@ -40,7 +63,7 @@ function validatePlayers() {
 // FIELD HELPERS
 // ================================
 
-function getStartCell() {
+function getStartCell() {  
   return document.querySelector('.field__cell[data-type="start"]');
 }
 
@@ -59,13 +82,14 @@ function createPlayerToken(player) {
 
 function placePlayersOnStart() {
   const startCell = getStartCell();
+
   if (!startCell) {
     console.warn("Start cell not found");
     return;
   }
 
   let tokensContainer = startCell.querySelector(".player-tokens");
-
+  
   if (!tokensContainer) {
     tokensContainer = document.createElement("div");
     tokensContainer.className = "player-tokens";
@@ -73,24 +97,19 @@ function placePlayersOnStart() {
   }
 
   players.forEach(player => {
-    const token = createPlayerToken(player);
-    tokensContainer.appendChild(token);
+    if(player.position == "start"){
+      const token = createPlayerToken(player);
+      tokensContainer.appendChild(token);
+    }
+    else{
+      console.log("Player not on start:", player);
+    }
   });
 }
-
-// ================================
-// FUTURE API (for next steps)
-// ================================
-
-// 🔜 movePlayer(playerId, steps)
-// 🔜 setActivePlayer(playerId)
-// 🔜 updatePlayerPanel(playerId)
-
-// ================================
-// INIT
-// ================================
 
 export function initPlayers() {
   validatePlayers();
   placePlayersOnStart();
 }
+
+export { players };

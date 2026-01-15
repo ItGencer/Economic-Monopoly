@@ -1,3 +1,6 @@
+import { players } from './player.js';
+const playerData = players[0];
+
 // Populate Player Info Items & Tables
 const companies = [
     { id: 1, value: "Aerofactory" },
@@ -8,11 +11,23 @@ const companies = [
     { id: 6, value: "TV factory" },
 ]
 
+let playerName = document.querySelector('.player-panel__info__name');
+playerName.textContent += playerData.name;
 document.querySelectorAll('.player-panel__info__item').forEach(el => {
     const span = document.createElement('span');
+    let value;
+    
     span.textContent = el.dataset.title;
-    el.textContent = el.dataset.value || '0';
-    el.prepend(span);
+    el.append(span);
+    
+    if (el.dataset.title === 'Money: '){
+        value = `${playerData.money} $`;
+    }
+    else{
+        value = el.dataset.value || 0;
+    }
+
+    el.append(value);
 });
 
 function creatTerms(params) {
@@ -27,10 +42,17 @@ function createElementiInTbody() {
     document.querySelector("tbody").querySelectorAll("tr").forEach(el => {
         const companiesTitle = document.createElement('td');
         const companiesShares = document.createElement('td');
-        
-        el.dataset.id = companies[el.rowIndex - 1]?.id || 0;
+
         companiesTitle.textContent = companies[el.rowIndex - 1]?.value || '';
-        companiesShares.textContent = el.dataset.shares || '0';
+
+        playerData.shares.forEach( share => {
+            if (share.companyId == companies[el.rowIndex - 1]?.id) {
+                el.dataset.shares = share.percentage;
+            }
+        });
+        let shareValue =  el.dataset.shares || '0'
+        companiesShares.textContent = `${shareValue} %`;
+        
         el.append(companiesTitle);
         el.append(companiesShares);
     });

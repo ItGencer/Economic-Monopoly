@@ -38,6 +38,7 @@ function renderCells(container, layout, typeMap) {
 
   layout.forEach(typeKey => {
     const data = typeMap[typeKey];
+    
     if (!data) return;
 
     const cell = document.createElement("div");

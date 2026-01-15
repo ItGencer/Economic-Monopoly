@@ -12,27 +12,38 @@ function getRandomNumber(min, max) {
 }
 
 function rollDice() {
-  pushBut = !pushBut;
-  let rollbutton = document.getElementById("roll-button")
+  let rollButton = document.getElementById("roll-button");
+  let value = 0;
   const dice = [...document.querySelectorAll(".die-list")];
-  
-  if (pushBut) {
-    dice.forEach(die => {
-      toggleClasses(die);
-      die.dataset.roll = getRandomNumber(1, 6);
-    });
 
-    rollbutton.textContent = "Waiting...";
-    rollbutton.disabled = true;
-    setTimeout(() => {
-      rollbutton.disabled = false;
-      rollbutton.textContent = "Roll Dice";
-    }, 2000);
-    pushBut = !pushBut;
-  }
+  dice.forEach(die => {
+    toggleClasses(die);
+    die.dataset.roll = getRandomNumber(1, 6);
+    value = parseInt(die.dataset.roll);
+  });
+
+  rollButton.textContent = "Waiting...";
+  rollButton.disabled = true;
+  setTimeout(() => {
+    rollButton.disabled = false;
+    rollButton.textContent = "Roll Dice";
+  }, 2000);
+
+  return value;
 }
 
+export function initDice(movePlayerCallback) {
+  const rollButton = document.getElementById("roll-button");
+  if (!rollButton) {
+    console.warn("roll-button not found");
+    return;
+  }
 
-export function initDice(){
-  document.getElementById("roll-button").addEventListener("click", rollDice);
+  rollButton.addEventListener("click", () => {
+    const diceValue = rollDice();
+
+    if (diceValue && movePlayerCallback) {
+      movePlayerCallback(diceValue);
+    }
+  });
 }
