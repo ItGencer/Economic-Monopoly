@@ -12,27 +12,41 @@ function getRandomNumber(min, max) {
 }
 
 function rollDice() {
-  pushBut = !pushBut;
-  let rollbutton = document.getElementById("roll-button")
-  const dice = [...document.querySelectorAll(".die-list")];
-  
-  if (pushBut) {
+   return new Promise(resolve => {
+    let rollButton = document.getElementById("roll-button");
+    let value = 0;
+    const dice = [...document.querySelectorAll(".die-list")];
+
     dice.forEach(die => {
       toggleClasses(die);
       die.dataset.roll = getRandomNumber(1, 6);
+      value = parseInt(die.dataset.roll);
     });
 
-    rollbutton.textContent = "Waiting...";
-    rollbutton.disabled = true;
+    rollButton.textContent = "Waiting...";
+    rollButton.disabled = true;
+
+    // ⏳ чекаємо завершення анімації
     setTimeout(() => {
-      rollbutton.disabled = false;
-      rollbutton.textContent = "Roll Dice";
+      rollButton.disabled = false;
+      rollButton.textContent = "Roll Dice";
+      resolve(value); // 🔥 ПОВЕРТАЄМО ЗНАЧЕННЯ ПІСЛЯ АНІМАЦІЇ
     }, 2000);
-    pushBut = !pushBut;
-  }
+  });
 }
 
+export function initDice(movePlayerCallback) {
+  const rollButton = document.getElementById("roll-button");
+  if (!rollButton) {
+    console.warn("roll-button not found");
+    return;
+  }
 
-export function initDice(){
-  document.getElementById("roll-button").addEventListener("click", rollDice);
+  rollButton.addEventListener("click", async() => {
+    const diceValue = await rollDice();
+
+    if (diceValue && movePlayerCallback) {
+      movePlayerCallback(diceValue);
+    }
+  });
 }

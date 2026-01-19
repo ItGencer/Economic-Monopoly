@@ -50,14 +50,15 @@ img{
 }
 
 .player-tokens {
-  position: absolute;
   display: flex;
   gap: 4px;
   flex-wrap: wrap;
   margin-top: 4px;
+  z-index: 1;
 }
 
 .player-token {
+  position: absolute;
   width: 25px;
   height: 25px;
   border-radius: 50%;

@@ -1,12 +1,12 @@
 import { initField } from "./field.js";
 import { initPlayerPanel } from "./player-panel.js";
 import { initPlayers } from "./player.js";
-import { initDice } from "./dice.js";
+import { initPlayerMove } from "./move-player.js";
 
-await initField();
+await initField();        // створює HTML поля + кнопку
 initPlayerPanel();
 initPlayers();
-initDice();
+initPlayerMove();  
 
 // Toggle Player Panel
 
