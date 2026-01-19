@@ -13,7 +13,7 @@ class Player {
       { companyId: 4, percentage: 0 },
       { companyId: 5, percentage: 0 },
       { companyId: 6, percentage: 0 }
-    ],
+    ]
   }) {
     this.id = id;
     this.name = name;
@@ -21,6 +21,8 @@ class Player {
     this.money = money;
     this.position = position;
     this.shares = shares;
+    this.positionIndex = 0; // 🔹 індекс у innerPath
+    this.token = null; 
   }
 
   addMoney(amount) {
@@ -49,7 +51,10 @@ const MIN_PLAYERS = 1;
 const MAX_PLAYERS = 6;
 
 let players = [
-  new Player({ id: 1, name: "Alice", color: "#ff0000"})];
+  new Player({ id: 1, name: "Alice", color: "#ff0000"}),
+  new Player({ id: 2, name: "Bob", color: "#00ff00"}),
+  new Player({ id: 3, name: "Charlie", color: "#0000ff"}),
+];
 
 function validatePlayers() {
   if (players.length < MIN_PLAYERS || players.length > MAX_PLAYERS) {
@@ -77,6 +82,7 @@ function createPlayerToken(player) {
   token.dataset.playerId = player.id;
   token.title = player.name;
   token.style.backgroundColor = player.color;
+  player.token = token; // 🔥 ключовий зв’язок
   return token;
 }
 

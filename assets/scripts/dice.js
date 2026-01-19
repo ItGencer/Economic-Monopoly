@@ -12,24 +12,27 @@ function getRandomNumber(min, max) {
 }
 
 function rollDice() {
-  let rollButton = document.getElementById("roll-button");
-  let value = 0;
-  const dice = [...document.querySelectorAll(".die-list")];
+   return new Promise(resolve => {
+    let rollButton = document.getElementById("roll-button");
+    let value = 0;
+    const dice = [...document.querySelectorAll(".die-list")];
 
-  dice.forEach(die => {
-    toggleClasses(die);
-    die.dataset.roll = getRandomNumber(1, 6);
-    value = parseInt(die.dataset.roll);
+    dice.forEach(die => {
+      toggleClasses(die);
+      die.dataset.roll = getRandomNumber(1, 6);
+      value = parseInt(die.dataset.roll);
+    });
+
+    rollButton.textContent = "Waiting...";
+    rollButton.disabled = true;
+
+    // ⏳ чекаємо завершення анімації
+    setTimeout(() => {
+      rollButton.disabled = false;
+      rollButton.textContent = "Roll Dice";
+      resolve(value); // 🔥 ПОВЕРТАЄМО ЗНАЧЕННЯ ПІСЛЯ АНІМАЦІЇ
+    }, 2000);
   });
-
-  rollButton.textContent = "Waiting...";
-  rollButton.disabled = true;
-  setTimeout(() => {
-    rollButton.disabled = false;
-    rollButton.textContent = "Roll Dice";
-  }, 2000);
-
-  return value;
 }
 
 export function initDice(movePlayerCallback) {
@@ -39,8 +42,8 @@ export function initDice(movePlayerCallback) {
     return;
   }
 
-  rollButton.addEventListener("click", () => {
-    const diceValue = rollDice();
+  rollButton.addEventListener("click", async() => {
+    const diceValue = await rollDice();
 
     if (diceValue && movePlayerCallback) {
       movePlayerCallback(diceValue);
